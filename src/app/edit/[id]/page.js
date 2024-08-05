@@ -1,10 +1,3 @@
+import NewFormPage from '../../new/page';
 
-const page = ({params}) => {
-  return (
-    <div>
-        editando {params.id}
-    </div>
-  )
-}
-
-export default page
+export default NewFormPage;

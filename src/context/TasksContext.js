@@ -1,6 +1,8 @@
 'use client'
 
+import {useLocalStorage} from "@/hooks/useLocalStorage";
 import { createContext,useContext, useState } from "react";
+import {v4 as uuid} from 'uuid';
 
 export const TaskContext = createContext();
 
@@ -13,38 +15,50 @@ export const useTasks = () => {
 }
 
 export const TaskProvider = ({children}) => {
-    
-    const [tasks, setTasks] = useState([
-        {
-            id: 1,
-            title:"my task",
-            description: "some task"
-        },
-        {
-            id: 2,
-            title:"my first task",
-            description: "some first task"
-        },
-        {
-            id: 3,
-            title:"my second task",
-            description: "some second task"
-        },
-        ])
 
+    const [tasks , setTasks] = useLocalStorage('tasks', [])
+    
+    // const [tasks, setTasks] = useState([]);
+
+    // useEffect(() => {
+    //     const item = localStorage.getItem("tasks");
+    //     const tasks = JSON.parse(item);
+    //     if(tasks.length > 0) {
+    //         setTasks(tasks);
+    //     }
+    // }, [])
+    
+    // useEffect(() => {
+    //   localStorage.setItem('tasks',JSON.stringify(tasks));
+    // }, [tasks])
+    
     const createTask = (title, description) => 
         setTasks([
             ...tasks,{
                 title,
                 description,
-                id:10
+                id: uuid()
             }
         ])
-    
+
+    const deleteTask = (id) => 
+        setTasks([
+            ...tasks.filter(task => task.id !== id)
+        ])
+
+        const updateTask = (id, updatedTask) =>
+            setTasks([
+              ...tasks.map((task) =>
+                task.id === id ? { ...task, ...updatedTask } : task
+              ),
+            ]);
+
     return (
         <TaskContext.Provider value={{
             tasks,
-            createTask
+            createTask,
+            deleteTask,
+            updateTask
         }}>
             {children}
         </TaskContext.Provider>

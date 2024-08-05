@@ -1,0 +1,4 @@
+notas vercel:
+npm i -g vercel
+vercel
+- Opcion loguearse con github
