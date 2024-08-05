@@ -2,3 +2,16 @@ notas vercel:
 npm i -g vercel
 vercel
 - Opcion loguearse con github
+
+? Set up and deploy “~\Documents\Nextjs 13 curso fazt nuevo\nextjs-context-crud”? yes
+? Which scope do you want to deploy to? isgb's projects
+? Link to existing project? no
+? What’s your project’s name? nextjs-context-crud
+? In which directory is your code located? ./
+Local settings detected in vercel.json:
+Auto-detected Project Settings (Next.js):
+- Build Command: next build
+- Development Command: next dev --port $PORT
+- Install Command: `yarn install`, `pnpm install`, `npm install`, or `bun install`
+- Output Directory: Next.js default
+? Want to modify these settings? (y/N) n
